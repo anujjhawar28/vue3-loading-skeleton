@@ -1,0 +1,41 @@
+{
+  "name": "vue3-loading-skeleton",
+  "version": "0.0.1",
+  "type": "module",
+  "author": "Anuj Jhawar",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vue-tsc": "^1.8.27"
+  },
+  "keywords": [
+    "vue",
+    "vue sketer",
+    "vue js",
+    "vue3",
+    "vue 3",
+    "vue 3 skeleton",
+    "vue 3 skeleton loading",
+    "vue 3 skeleton loader",
+    "vue3 skeleton",
+    "vue3 skeleton loading",
+    "vue3 skeleton loader",
+    "vue skeleton",
+    "vue skeleton loading",
+    "vue skeleton loader"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anujjhawar28/vue3-loading-skeleton"
+  },
+  "license": "MIT"
+}
