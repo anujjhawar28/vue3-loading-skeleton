@@ -56,7 +56,6 @@ export default defineComponent({
     tag: {
       type: String,
       default: "span",
-      required: true,
     },
   },
   setup(props) {

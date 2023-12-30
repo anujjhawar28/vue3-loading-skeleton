@@ -14,7 +14,7 @@
     "noUnusedLocals": true,
     "allowJs": true,
     "noUnusedParameters": true,
-    "lib": ["ESNext", "DOM"],
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

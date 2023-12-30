@@ -69,7 +69,7 @@
   </div>
 </template>
 <script lang="ts">
-import SkeletonLoader from "./components/SkeletonLoader.vue";
+import { SkeletonLoader } from "./components";
 import { defineComponent, ref } from "vue";
 
 export default defineComponent({

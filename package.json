@@ -1,12 +1,22 @@
 {
   "name": "vue3-loading-skeleton",
-  "version": "0.0.1",
+  "version": "0.0.10",
   "type": "module",
   "author": "Anuj Jhawar",
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "build": "vite build && vue-tsc --noEmit",
+    "preview": "vite preview",
+    "package": "npm run build && npm publish"
   },
   "dependencies": {
     "vue": "^3.4.0"
