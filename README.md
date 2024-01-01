@@ -2,7 +2,7 @@
 
 Vue 3 adaptive skeleton loading component that will match your typography.
 
-[Codesandbox Card Example](https://codesandbox.io/s/epic-ishizaka-nl9z3?file=/src/App.vue)
+<!-- [Codesandbox Card Example](https://codesandbox.io/s/epic-ishizaka-nl9z3?file=/src/App.vue) -->
 
 ## Installation
 
@@ -14,7 +14,7 @@ Skeletons are used to mimic how the real content would look, so in order to crea
 
 Aww sounds awful isn't it?
 
-Wouldn't be nice if you had a skeleton that automatically adjusts to your existing components layout? I think it would =) so the Vue Skeletor comes to rescue.
+Wouldn't be nice if you had a component for skeleton that automatically adjusts to your existing components layout? I think it would =) so the Vue3 Skeleton Loading comes to rescue.
 
 Instead of creating separate skeleton components you can inject skeletons directly into your existing components.
 
@@ -31,7 +31,7 @@ Example:
         />
 
         <!-- A simple 200px height rect which mimics the post image  -->
-        <Skeletor v-else-if="isPostLoading" height="200"/>
+        <SkeletonLoader v-else-if="isPostLoading" height="200"/>
       </div>
 
       <div class="post__title">
@@ -39,7 +39,7 @@ Example:
           {{ post.title }}
         </template>
 
-        <Skeletor v-else-if="isPostLoading">
+        <SkeletonLoader v-else-if="isPostLoading">
       </div>
 
       <div class="post__text">
@@ -49,7 +49,7 @@ Example:
 
         <template v-else-if="isPostLoading">
           <!-- Creating 5 skeletons that mimics the text -->
-          <Skeletor v-for="i in 5">
+          <SkeletonLoader v-for="i in 5">
         </template>
       </div>
     </div>
@@ -60,82 +60,51 @@ And that's it, the text skeletons will automatically catch up with the styles yo
 
 ## Basic Usage
 
-First import the Skeletor styles
+First import the SkeletonLoader styles
 
 ```js
-import "vue-skeletor/dist/vue-skeletor.css";
+import "vue3-loading-skeleton/dist/style.css";
 ```
 
 Option 1 - Register Locally
 
 ```js
 // SomeComponent.vue
-import { Skeletor } from "vue-skeletor";
+import { SkeletonLoader } from "vue3-loading-skeleton";
 
 export default {
-  components: { Skeletor },
+  components: { SkeletonLoader },
 };
 ```
 
 Option 2 - Register Globally
 
 ```js
-// main.js
-import { Skeletor } from "vue-skeletor";
+// main.ts
+import { SkeletonLoader } from "vue3-loading-skeleton";
 
-app.component(Skeletor.name, Skeletor);
+createApp(App).component("SkeletonLoader", SkeletonLoader).mount("#app");
 ```
 
 ```html
 <!-- And use in your <template> or JSX -->
-<Skeletor />
+<SkeletonLoader />
 ```
 
-## Global Configuration
-
-If you want you can globally turn off the shimmer animation using the Skeletor Plugin
-usage.
-
-```js
-// Import the plugin
-import VueSkeletor from "vue-skeletor";
-
-// Register plugin in your vue app
-app.use(VueSkeletor, {
-  shimmer: false,
-});
-```
-
-## useSkeletor
-
-When you install skeletor as Plugin it `provides` global config to your app and you get access to 'useSkeletor' composable which will inject the `skeletor` config object through which you can set any global config at runtime.
-
-```js
-// Import the composable
-import { useSkeletor } from "vue-skeletor";
-
-export default defineComponent({
-  setup() {
-    // In your setup function use the composable
-    const skeletor = useSkeletor();
-
-    // Set the shimmer config
-    skeletor.shimmer = false;
-  },
-});
-```
+### Props Support
 
 ## Width
 
 `width`: number | string
+`default`: `100%`
 
 ```html
 <!-- Both are same and evaluate to 100px -->
-<Skeletor width="100" />
-<Skeletor :width="100" />
+<SkeletonLoader width="100" />
+<SkeletonLoader :width="100" />
 
 <!-- Any valid css value for width property -->
-<Skeletor width="50%"></Skeletor>
+<SkeletonLoader width="50%" />
 ```
 
 Width of your skeleton, can be a number or css string value.
@@ -143,14 +112,15 @@ Width of your skeleton, can be a number or css string value.
 ## Height
 
 `height`: number | string
+`default`: `32px`
 
 ```html
 <!-- Both are same and evaluate to 100px -->
-<Skeletor height="100" />
-<Skeletor :height="100" />
+<SkeletonLoader height="100" />
+<SkeletonLoader :height="100" />
 
 <!-- Any valid css value for width property -->
-<Skeletor height="50%"></Skeletor>
+<SkeletonLoader height="50%" />
 ```
 
 Height of your skeleton, can be a number or css string value.
@@ -164,10 +134,14 @@ creating non text block level skeletons like image placeholders, buttons, and e.
 ## Size
 
 `size`: number | string
+⚠️ It works with `circle` property also
 
 ```html
+<!-- Creates a 100x100 circle -->
+<SkeletonLoader size="100" circle />
+
 <!-- Creates a 100x100 square -->
-<Skeletor size="100" />
+<SkeletonLoader size="100" />
 ```
 
 Size sets both `width` & `height` to simplify creating square/circle shapes
@@ -178,103 +152,90 @@ Size sets both `width` & `height` to simplify creating square/circle shapes
 
 ```html
 <!-- Creates a 50x50 circle -->
-<Skeletor circle size="50" />
+<SkeletonLoader circle size="50" />
 ```
 
 As the name suggest it just turns the element into a circle, use only when `width` & `height` or size is set.
 
 ## Pill
 
-`pill`: boolean (default: false)
+`pill`: boolean
+`default`: `false`
 
 ```html
-<Skeletor width="200" height="50" pill />
+<SkeletonLoader width="200" height="50" pill />
 ```
 
-Makes rectangular skeletons fully rounded, useful when creating rounded button or chip
+Makes rectangular skeletons fully rounded, useful when creating rounded button or chip or card's footer or actions buttons
 and e.t.c shapes.
 
-## Shimmer
+## Preview
 
-`shimmer`: boolean
+`preview`: boolean
+`default`: `false`
 
 ```html
-<Skeletor :shimmer="false" />
+<SkeletonLoader preview />
 ```
 
-Optionally you can turn off/on specific skeleton's shimmer animation, it is based of
-your global config, if you disable shimmer globally, then this prop should be set
-accordingly.
+Optionally you can turn off/on specific skeleton's preview animation, it is based, if you enable preview, then the component will have preview mode without animation.
 
-## As
+## Tag
 
-`as`: string (default: 'span')
+`tag`: string
+`default`: `span`
 
 ```html
-<Skeletor :size="100" as="div" />
+<SkeletonLoader :size="100" tag="div" />
 ```
 
 By default skeletons are rendered as `span` tags, but you can change it
 using this prop.
 
-## Customizing the style and animation
+## Customizing the style and animation with Props
 
-Skeletor uses bem classes, that you can use to override your skeletons color and shimmer animation and you have the full control over how your skeletons look, there is no need for any javascript api for this in my opinion.
+SkeletonLoader supports additional props which is exposed to change the animation dynamically as per need and use cases.
 
-```css
-/* Static background */
-.vue-skeletor {
-  background-color: #ccc;
-}
+## Background color
 
-/* 
-    If you have theme switching in your app for example
-    from light to dark, you can target skeletons under 
-    some global theme class or attribute e.g. 
-  */
-[data-theme="dark"] .vue-skeletor {
-  background: #363636;
-}
+`backgroundColor`: string
+`default`: `#dddbdd`
 
-/* 
-    Text skeleton
-    By default skeletor uses fully rounded style for text
-    type skeletons, you can change that as you like
-  */
-.vue-skeletor--text {
-  /* Completely square style skeletons */
-  border-radius: 0;
-}
-
-/* Shimmer */
-.vue-skeletor:not(.vue-skeletor--shimmerless):after {
-  /* 
-      Change the shimmer color, its a simple 90 deg 
-      linear horizontal gradient, adjust it however
-      you like.
-    */
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 1) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-
-  /* Change any css keyframes animation property */
-  animation-duration: 2s;
-  animation-timing-function: ease-in-out;
-  /* ... */
-
-  /* 
-      Or implement your custom shimmer css animation 
-      if you want it's pure css no magic happening =)
-    */
-}
-
-/* Default keyframes used in skeletor */
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
+```html
+<SkeletonLoader :backgroundColor="#a0a0a0" />
 ```
+
+You can change the background color of your skeleton using this property.
+
+## Duration
+
+`duration`: string
+`default`: `1.5s` [ref](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration)
+
+```html
+<SkeletonLoader :duration="2s" />
+```
+
+By default skeletons are rendered with animation duration `1.5s` you can customize with valid animation duration [css value in seconds](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration).
+
+## Gradient
+
+`gradient`: string
+`default`: `linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0))`
+
+```html
+<SkeletonLoader :duration="2s" />
+```
+
+You can change the animation background gradient of your skeleton using this property with valid css animation gradient.[Reference for Background gradient generator](https://animated-gradient-background-generator.netlify.app/)
+
+## Animation Timing Function
+
+`animationTimingFunction`: string
+`default`: `ease-in-out` [ref](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function)
+
+```html
+<SkeletonLoader :animationTimingFunction="ease-out" />
+```
+
+You can change the animation Timing Function of your skeleton using this property with valid css [animation timing function value](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function)

@@ -7,7 +7,7 @@
     <div style="display: flex; align-items: center">
       <SkeletonLoader pill width="10%" tag="h2" />
       <SkeletonLoader circle :size="50" tag="div" />
-      <SkeletonLoader circle :size="70" />
+      <SkeletonLoader :size="70" />
     </div>
 
     <!-- Example 2.1: Circle/Avatar Loader with Different Sizes -->

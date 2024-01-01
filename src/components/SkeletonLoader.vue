@@ -97,18 +97,9 @@ export default defineComponent({
       }
     });
 
-    const displayClass = computed(() => {
-      if (!circle.value && size.value) {
-        return "display-block";
-      } else {
-        return "display-inline";
-      }
-    });
-
     return {
       borderRadius,
       style,
-      displayClass,
     };
   },
 });
