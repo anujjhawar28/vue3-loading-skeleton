@@ -1,6 +1,6 @@
 {
   "name": "vue3-loading-skeleton",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "type": "module",
   "author": "Anuj Jhawar",
   "main": "./dist/index.umd.cjs",
@@ -23,6 +23,7 @@
     "vue": "^3.4.0"
   },
   "devDependencies": {
+    "@types/node": "^20.10.6",
     "@vitejs/plugin-vue": "^5.0.1",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
